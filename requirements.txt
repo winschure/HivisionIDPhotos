@@ -6,3 +6,4 @@ requests
 mtcnn-runtime
 tqdm
 starlette
+python-dotenv

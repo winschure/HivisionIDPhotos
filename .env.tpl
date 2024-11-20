@@ -1,0 +1,2 @@
+ENABLE_DOCS=False
+RUN_MODE=beast

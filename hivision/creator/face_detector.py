@@ -7,6 +7,8 @@ r"""
 @Description:
     人脸检测器
 """
+import Settings
+
 try:
     from mtcnnruntime import MTCNN
 except ImportError:
@@ -215,5 +217,5 @@ def detect_face_retinaface(ctx: Context):
     ctx.face["roll_angle"] = roll_angle
 
     # 如果RUN_MODE不是野兽模式，则释放模型
-    if os.getenv("RUN_MODE") == "beast":
+    if Settings.RUN_MODE == "beast":
         RETINAFCE_SESS = None

@@ -1,5 +1,7 @@
 import argparse
 import os
+
+import Settings
 from demo.processor import IDPhotoProcessor
 from demo.ui import create_ui
 from hivision.creator.choose_handler import HUMAN_MATTING_MODELS
@@ -67,7 +69,7 @@ if __name__ == "__main__":
     )
     
     # 如果RUN_MODE是Beast，打印已开启野兽模式
-    if os.getenv("RUN_MODE") == "beast":
+    if Settings.RUN_MODE == "beast":
         print("[Beast mode activated.] 已开启野兽模式。")
 
     demo.launch(

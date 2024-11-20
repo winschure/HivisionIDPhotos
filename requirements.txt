@@ -1,4 +1,5 @@
 opencv-python>=4.8.1.78
+opencv-python-headless; platform_system == 'linux'
 onnxruntime>=1.15.0
 numpy<=1.26.4
 requests

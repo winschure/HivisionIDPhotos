@@ -1,4 +1,8 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, Form, File
+
+import Settings
 from hivision import IDCreator
 from hivision.error import FaceError
 from hivision.creator.layout_calculator import (
@@ -19,7 +23,7 @@ import numpy as np
 import cv2
 from starlette.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI() if Settings.ENABLE_DOCS else FastAPI(docs_url=None, redoc_url=None)
 creator = IDCreator()
 
 # 添加 CORS 中间件 解决跨域问题
@@ -360,4 +364,4 @@ if __name__ == "__main__":
     import uvicorn
 
     # 在8080端口运行推理服务
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8081)

@@ -10,6 +10,8 @@ r"""
 import numpy as np
 from PIL import Image
 import onnxruntime
+
+import Settings
 from .tensor2numpy import NNormalize, NTo_Tensor, NUnsqueeze
 from .context import Context
 import cv2
@@ -219,7 +221,7 @@ def get_modnet_matting(input_image, checkpoint_path, ref_size=512):
     output_image = cv2.merge((b, g, r, mask))
     
     # 如果RUN_MODE不是野兽模式，则释放模型
-    if os.getenv("RUN_MODE") != "beast":
+    if Settings.RUN_MODE != "beast":
         HIVISION_MODNET_SESS = None
 
     return output_image
@@ -256,7 +258,7 @@ def get_modnet_matting_photographic_portrait_matting(
     output_image = cv2.merge((b, g, r, mask))
     
     # 如果RUN_MODE不是野兽模式，则释放模型
-    if os.getenv("RUN_MODE") != "beast":
+    if Settings.RUN_MODE != "beast":
         MODNET_PHOTOGRAPHIC_PORTRAIT_MATTING_SESS = None
 
     return output_image
@@ -309,7 +311,7 @@ def get_rmbg_matting(input_image: np.ndarray, checkpoint_path, ref_size=1024):
     new_im.paste(orig_image, mask=pil_im)
     
     # 如果RUN_MODE不是野兽模式，则释放模型
-    if os.getenv("RUN_MODE") != "beast":
+    if Settings.RUN_MODE != "beast":
         RMBG_SESS = None
 
     return np.array(new_im)
@@ -422,7 +424,7 @@ def get_birefnet_portrait_matting(input_image, checkpoint_path, ref_size=512):
     new_im.paste(orig_image, mask=pil_im)
     
     # 如果RUN_MODE不是野兽模式，则释放模型
-    if os.getenv("RUN_MODE") != "beast":
+    if Settings.RUN_MODE != "beast":
         BIREFNET_V1_LITE_SESS = None
 
     return np.array(new_im)

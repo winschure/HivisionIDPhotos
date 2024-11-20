@@ -5,8 +5,7 @@ services:
       dockerfile: Dockerfile
     image: bruceyan1/hivision_idphotos
     command: python3 -u app.py --host 0.0.0.0 --port 7860
-    env_file:
-      - path: "./.env"
+    env_file: .env
     ports:
       - '7860:7860'
 
@@ -16,7 +15,6 @@ services:
       dockerfile: Dockerfile
     image: bruceyan1/hivision_idphotos
     command: python3 deploy_api.py
-    env_file:
-      - path: "./.env"
+    env_file: .env
     ports:
       - '8080:8080'

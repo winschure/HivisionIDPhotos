@@ -48,7 +48,7 @@ async def idphoto_inference(
     human_matting_model: str = Form("modnet_photographic_portrait_matting"),
     face_detect_model: str = Form("mtcnn"),
     hd: bool = Form(True),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
     face_align: bool = Form(False),
     head_measure_ratio: float = Form(0.2),
     head_height_ratio: float = Form(0.45),
@@ -111,7 +111,7 @@ async def human_matting_inference(
     input_image: UploadFile = File(None),
     input_image_base64: str = Form(None),
     human_matting_model: str = Form("hivision_modnet"),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
 ):
     if input_image_base64:
         img = base64_2_numpy(input_image_base64)
@@ -147,7 +147,7 @@ async def photo_add_background(
     input_image_base64: str = Form(None),
     color: str = Form("000000"),
     kb: int = Form(None),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
     render: int = Form(0),
 ):
     render_choice = ["pure_color", "updown_gradient", "center_gradient"]
@@ -190,7 +190,7 @@ async def generate_layout_photos(
     height: int = Form(413, ge=10, le=Settings.MAX_HEIGHT),
     width: int = Form(295, ge=10, le=Settings.MAX_WIDTH),
     kb: int = Form(None),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
 ):
     # try:
     if input_image_base64:
@@ -240,7 +240,7 @@ async def watermark(
     color: str = "#000000",
     space: int = 25,
     kb: int = Form(None),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
 ):
     if input_image_base64:
         img = base64_2_numpy(input_image_base64)
@@ -277,7 +277,7 @@ async def watermark(
 async def set_kb(
     input_image: UploadFile = File(None),
     input_image_base64: str = Form(None),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
     kb: int = Form(50),
 ):
     if input_image_base64:
@@ -314,7 +314,7 @@ async def idphoto_crop_inference(
     width: int = Form(295, ge=10, le=Settings.MAX_WIDTH),
     face_detect_model: str = Form("mtcnn"),
     hd: bool = Form(True),
-    dpi: int = Form(300),
+    dpi: int = Form(300, ge=300, le=Settings.MAX_DPI),
     head_measure_ratio: float = Form(0.2),
     head_height_ratio: float = Form(0.45),
     top_distance_max: float = Form(0.12),

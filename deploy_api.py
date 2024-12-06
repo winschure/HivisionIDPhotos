@@ -43,8 +43,8 @@ app.add_middleware(
 async def idphoto_inference(
     input_image: UploadFile = File(None),
     input_image_base64: str = Form(None),
-    height: int = Form(413),
-    width: int = Form(295),
+    height: int = Form(413, ge=10, le=Settings.MAX_HEIGHT),
+    width: int = Form(295, ge=10, le=Settings.MAX_WIDTH),
     human_matting_model: str = Form("modnet_photographic_portrait_matting"),
     face_detect_model: str = Form("mtcnn"),
     hd: bool = Form(True),
@@ -187,8 +187,8 @@ async def photo_add_background(
 async def generate_layout_photos(
     input_image: UploadFile = File(None),
     input_image_base64: str = Form(None),
-    height: int = Form(413),
-    width: int = Form(295),
+    height: int = Form(413, ge=10, le=Settings.MAX_HEIGHT),
+    width: int = Form(295, ge=10, le=Settings.MAX_WIDTH),
     kb: int = Form(None),
     dpi: int = Form(300),
 ):
@@ -310,8 +310,8 @@ async def set_kb(
 async def idphoto_crop_inference(
     input_image: UploadFile = File(None),
     input_image_base64: str = Form(None),
-    height: int = Form(413),
-    width: int = Form(295),
+    height: int = Form(413, ge=10, le=Settings.MAX_HEIGHT),
+    width: int = Form(295, ge=10, le=Settings.MAX_WIDTH),
     face_detect_model: str = Form("mtcnn"),
     hd: bool = Form(True),
     dpi: int = Form(300),

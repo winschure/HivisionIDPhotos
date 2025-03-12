@@ -154,7 +154,9 @@ logs
 .dockerignore
 .gitignore
 docker-compose.yml
+docker-compose-gpu.yml
 Dockerfile
+Dockerfile-gpu
 install.sh
 README.md
 README_EN.md

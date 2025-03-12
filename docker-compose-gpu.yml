@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-gpu
-    image: bruceyan1/hivision_idphotos
+    image: bruceyan1/hivision_idphotos_gpu
     command: python3 -u app.py --host 0.0.0.0 --port 7860
     env_file: .env
     ports:
@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-gpu
-    image: bruceyan1/hivision_idphotos
+    image: bruceyan1/hivision_idphotos_gpu
     command: python3 deploy_api.py
     env_file: .env
     ports:
